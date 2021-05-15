@@ -1,6 +1,10 @@
 package com.nazartsyhaniuk.dev.onlinebanking.entity;
 
+import com.nazartsyhaniuk.dev.onlinebanking.validation.CheckEmail;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,27 +17,41 @@ public class Customer {
     private long id;
 
     @Column(name = "name")
+    @NotBlank
     private String name;
 
     @Column(name = "surname")
+    @NotBlank
     private String surname;
 
+    @Column(name = "mail")
+    @NotBlank
+    @CheckEmail
+    private String mail;
+
     @Column(name = "date_of_birth")
+    @NotBlank
     private String dateOfBirth;
 
     @Column(name = "address")
+    @NotBlank
     private String address;
 
     @Column(name = "city")
+    @NotBlank
     private String city;
 
     @Column(name = "country")
+    @NotBlank
     private String country;
 
+    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{3}", message = "please use pattern XXX-XXX-XXX")
     @Column(name = "phone_number")
+    @NotBlank
     private String phoneNumber;
 
     @Column(name = "password")
+    @NotBlank
     private String password;
 
     @Column(name = "cis_number")
