@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sign in</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/sign-up}" th:object="${customer}" method="post" role="form" data-toggle="validator">
+    <div class="container">
+        <h1>Register</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+
+        <div>
+            <label><b>Name</b></label>
+            <input type="text" placeholder="Enter name" th:field="*{name}" required th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Surname</b></label>
+            <input type="text" placeholder="Enter surname" th:field="*{surname}" required/>
+            <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Mail</b></label>
+            <input type="email" placeholder="Enter mail" th:field="*{mail}"/>
+            <div th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Date of birth</b></label>
+            <input type="date" placeholder="Enter Date of birth" th:field="*{dateOfBirth}" required/>
+            <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Address</b></label>
+            <input type="text" placeholder="Enter address" th:field="*{address}" required/>
+            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>City</b></label>
+            <input type="text" placeholder="Enter city" th:field="*{city}" required/>
+            <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Country</b></label>
+            <input type="text" placeholder="Enter country" th:field="*{country}" required/>
+            <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+
+        <div>
+            <label><b>Phone number</b></label>
+            <input type="text" placeholder="Enter phone number" th:field="*{phoneNumber}"
+                   th:errorClass="is-invalid" required/>
+            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <div>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter password" th:field="*{password}" required/>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+        </div>
+        <hr>
+
+        <button type="submit" class="registerbtn">Sign in</button>
+    </div>
+
+    <div class="container sign_in">
+        <p>Already have an account? <a href="#"></a>.</p>
+    </div>
+</form>
+
+
+</body>
+</html>
