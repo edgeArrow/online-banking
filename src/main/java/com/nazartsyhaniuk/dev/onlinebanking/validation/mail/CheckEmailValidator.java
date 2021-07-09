@@ -1,4 +1,4 @@
-package com.nazartsyhaniuk.dev.onlinebanking.validation;
+package com.nazartsyhaniuk.dev.onlinebanking.validation.mail;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

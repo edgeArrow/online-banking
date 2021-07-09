@@ -3,26 +3,37 @@ package com.nazartsyhaniuk.dev.onlinebanking.controller;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import com.nazartsyhaniuk.dev.onlinebanking.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/sign-up")
 public class RegistrationController {
 
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     @Autowired
     public RegistrationController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-    @PostMapping("/registration")
-    public Customer registration(@RequestBody Customer customer) {
+    @GetMapping
+    public String showRegistrationTemplate(@ModelAttribute("customer") Customer customer, Model model) {
+        model.addAttribute("customer", customer);
+        return "registration";
+    }
+
+    @PostMapping
+    public String registration(@Validated Customer customer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
         customerService.create(customer);
 
-        return customer;
+        return "somt";
     }
 }

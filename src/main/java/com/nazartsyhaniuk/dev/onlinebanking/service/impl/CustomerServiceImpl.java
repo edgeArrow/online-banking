@@ -1,7 +1,6 @@
 package com.nazartsyhaniuk.dev.onlinebanking.service.impl;
 
 import com.nazartsyhaniuk.dev.onlinebanking.dao.CustomerDao;
-import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerDto;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import com.nazartsyhaniuk.dev.onlinebanking.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerDao customerDao;
+    private final CustomerDao customerDao;
 
     @Autowired
     public CustomerServiceImpl(CustomerDao customerDao) {

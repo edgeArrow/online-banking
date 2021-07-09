@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public CustomerDaoImpl(EntityManager entityManager) {
@@ -28,16 +28,14 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer findById(Long id) {
-        Customer customer = entityManager.find(Customer.class, id);
 
-        return customer;
+        return entityManager.find(Customer.class, id);
     }
 
     @Override
     public List<Customer> findAll() {
-        List<Customer> allCustomers = entityManager.createQuery("from Customer", Customer.class).getResultList();
 
-        return allCustomers;
+        return entityManager.createQuery("from Customer", Customer.class).getResultList();
     }
 
     @Override

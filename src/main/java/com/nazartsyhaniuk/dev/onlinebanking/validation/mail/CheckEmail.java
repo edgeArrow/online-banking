@@ -1,4 +1,4 @@
-package com.nazartsyhaniuk.dev.onlinebanking.validation;
+package com.nazartsyhaniuk.dev.onlinebanking.validation.mail;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = CheckEmailValidator.class)
 public @interface CheckEmail {
 
-    public String value() default "gmail.com";
+    String value() default "gmail.com";
 
-    public String message() default "Mail must ends with gmail.com";
+    String message() default "Mail must ends with gmail.com";
 
-    public Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-    public Class<? extends Payload> [] payload() default {};
+    Class<? extends Payload> [] payload() default {};
 }
