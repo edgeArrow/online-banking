@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Random;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
 
     private final EntityManager entityManager;
+    private final Random random = new Random();
 
     @Autowired
     public CustomerDaoImpl(EntityManager entityManager) {
@@ -21,8 +23,9 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void create(Customer customer) {
-        Customer newCustomer = entityManager.merge(customer);
+        customer.setCISNumber(createCISNumber());
 
+        Customer newCustomer = entityManager.merge(customer);
         customer.setId(newCustomer.getId());
     }
 
@@ -44,5 +47,15 @@ public class CustomerDaoImpl implements CustomerDao {
 
         query.setParameter("customerId", id);
         query.executeUpdate();
+    }
+
+    private String createCISNumber() {
+        StringBuilder CIS = new StringBuilder();
+
+        for (int i = 0; i < 8; i++) {
+            CIS.append(random.nextInt(10));
+        }
+
+        return CIS.toString();
     }
 }

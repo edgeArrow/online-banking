@@ -1,6 +1,5 @@
 package com.nazartsyhaniuk.dev.onlinebanking.validation.password;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerDto;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 
 import javax.validation.ConstraintValidator;
@@ -12,9 +11,11 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
     }
 
+    //TODO
+    // temporarily not used
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
-        CustomerDto customer = (CustomerDto) obj;
-        return customer.getPassword().equals(customer.getMatchingPassword());
+        Customer customer = (Customer) obj;
+        return customer.getPassword().equals(customer.getPassword());
     }
 }

@@ -1,7 +1,7 @@
 package com.nazartsyhaniuk.dev.onlinebanking.entity;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dto_DEPRICATED.transfer.ExistData;
-import com.nazartsyhaniuk.dev.onlinebanking.dto_DEPRICATED.transfer.NewData;
+import com.nazartsyhaniuk.dev.onlinebanking.dto.transfer.ExistData;
+import com.nazartsyhaniuk.dev.onlinebanking.dto.transfer.NewData;
 import com.nazartsyhaniuk.dev.onlinebanking.validation.mail.CheckEmail;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -62,6 +62,7 @@ public class Customer {
     @Column(name = "password")
     private String password;
 
+
     @Column(name = "cis_number")
     private String CISNumber;
 
@@ -76,4 +77,5 @@ public class Customer {
 
         creditCards.add(creditCard);
     }
+
 }
