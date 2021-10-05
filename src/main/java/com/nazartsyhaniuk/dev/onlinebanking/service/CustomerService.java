@@ -13,4 +13,8 @@ public interface CustomerService {
     List<Customer> findAll();
 
     void delete(Long id);
+
+    Customer findByMail(String mail);
+
+    Customer findByCISNumber(String CISNumber);
 }
