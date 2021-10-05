@@ -62,6 +62,7 @@ public class Customer {
     @Column(name = "password")
     private String password;
 
+    private Role role;
 
     @Column(name = "cis_number")
     private String CISNumber;
