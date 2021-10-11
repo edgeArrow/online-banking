@@ -1,17 +1,14 @@
 package com.nazartsyhaniuk.dev.onlinebanking.controller;
 
 import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerLoginDto;
-import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import com.nazartsyhaniuk.dev.onlinebanking.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -26,14 +23,16 @@ public class LoginController {
     }
 
     @GetMapping
-    public String showLoginTemplate(@ModelAttribute("customer") Customer customer, Model model) {
-        model.addAttribute("customer", customer);
+    public String showLoginTemplate(Model model) {
+        CustomerLoginDto customerLoginDto = new CustomerLoginDto();
+        model.addAttribute("customer", customerLoginDto);
         return "login";
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> signIn(CustomerLoginDto customer) {
-        return loginService.signIn(customer);
+    public ResponseEntity<Map<String, String>> signIn(
+            @ModelAttribute("customer") @Valid CustomerLoginDto customerLoginDto) {
+        return loginService.signIn(customerLoginDto);
     }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
     </div>
 
 
-    <form action="start.html" th:action="@{/login}" th:object="${customer}" role="form" method="post"
+    <form th:action="@{/login}" th:object="${customer}" role="form" method="post"
     data-toggle="validator">
         <fieldset class="container-fluid">
             <legend>Login</legend>
@@ -36,16 +36,18 @@
             <div>
                 <label><b>CIS number</b>
                     <br>
-                    <input type="text" placeholder="Enter your CIS number" th:field="*{CISNumber}" required th:errorClass="is-invalid">
+                    <input type="text" placeholder="Enter your CIS number" th:field="*{username}"
+                           required th:errorClass="is-invalid">
                 </label>
-                <div th:if="${#fields.hasErrors('CISNumber')}" th:errors="*{CISNumber}" class="invalid-feedback"></div>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
             </div>
             <br>
 
             <div>
                 <label><b>Password</b>
                     <br>
-                    <input type="text" placeholder="Enter your password" th:field="*{password}" required th:errorClass="is-invalid">
+                    <input type="text" placeholder="Enter your password" th:field="*{password}"
+                           required th:errorClass="is-invalid">
                 </label>
                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
             </div>
@@ -63,7 +65,8 @@
         <hr>
 
         <div class="container sign">
-            <p>Don't have an account? <a class="btn btn-primary" type="button" href="registration.html">Sign-up</a></p>
+            <p>Don't have an account? <a class="btn btn-primary" type="button"
+                                         href="http://localhost:8080/sign-up">Sign-up</a></p>
         </div>
     </form>
 </div>

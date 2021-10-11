@@ -1,6 +1,5 @@
 package com.nazartsyhaniuk.dev.onlinebanking.dto;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dto.transfer.NewData;
 import com.nazartsyhaniuk.dev.onlinebanking.validation.mail.CheckEmail;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 @ToString
 public class CustomerDto implements Serializable {
 
-    @Null(groups = {NewData.class})
+    @Null
     private Long id;
 
     @NotBlank(message = "Please provide your name")
@@ -45,7 +44,8 @@ public class CustomerDto implements Serializable {
     @NotBlank(message = "Please provide your number")
     private String phoneNumber;
 
-    @NotBlank()
+    @NotBlank(message = "Please provide your password")
+    @Size(min = 6, max = 32)
     private String password;
 
 }
