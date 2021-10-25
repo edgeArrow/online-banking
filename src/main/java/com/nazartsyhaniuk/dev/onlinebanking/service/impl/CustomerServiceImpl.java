@@ -3,12 +3,14 @@ package com.nazartsyhaniuk.dev.onlinebanking.service.impl;
 import com.nazartsyhaniuk.dev.onlinebanking.dao.CustomerRepository;
 import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerDto;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
+import com.nazartsyhaniuk.dev.onlinebanking.service.AccountService;
 import com.nazartsyhaniuk.dev.onlinebanking.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -17,24 +19,28 @@ import java.util.Random;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final AccountService accountService;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
     private final Random random = new Random();
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, AccountService accountService, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
+        this.accountService = accountService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
+    @Transactional
     public void create(CustomerDto customerDto) {
         Customer customer = modelMapper.map(customerDto, Customer.class);
 
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customer.setCISNumber(createCISNumber());
+        customer.setAccount(accountService.create());
 
         customerRepository.save(customer);
     }
