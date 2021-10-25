@@ -1,7 +1,5 @@
 package com.nazartsyhaniuk.dev.onlinebanking.entity;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dto.transfer.ExistData;
-import com.nazartsyhaniuk.dev.onlinebanking.dto.transfer.NewData;
 import com.nazartsyhaniuk.dev.onlinebanking.validation.mail.CheckEmail;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,8 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -34,14 +30,12 @@ public class Customer {
 
     @Column(name = "mail")
     @CheckEmail
-    @NotBlank(groups = {NewData.class, ExistData.class},
-            message = "Please provide your mail")
+    @NotBlank(message = "Please provide your mail")
     private String mail;
 
     @Column(name = "date_of_birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotBlank(groups = {NewData.class, ExistData.class},
-            message = "Please provide your date of birth")
+    @NotBlank(message = "Please provide your date of birth")
     private String dateOfBirth;
 
     @Column(name = "address")
@@ -55,8 +49,7 @@ public class Customer {
 
     @Column(name = "phone_number")
     @Pattern(regexp = "\\d{3}-\\d{3}-\\d{3}", message = "Please use pattern XXX-XXX-XXX")
-    @NotBlank(groups = {NewData.class, ExistData.class},
-            message = "Please provide your number")
+    @NotBlank(message = "Please provide your number")
     private String phoneNumber;
 
     @Column(name = "password")
@@ -67,16 +60,8 @@ public class Customer {
     @Column(name = "cis_number")
     private String CISNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id")
-    private List<CreditCard> creditCards;
-
-    public void addCreditCardToCustomer(CreditCard creditCard) {
-        if (creditCards == null) {
-            creditCards = new ArrayList<>();
-        }
-
-        creditCards.add(creditCard);
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
 }
