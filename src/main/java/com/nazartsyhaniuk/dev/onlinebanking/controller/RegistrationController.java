@@ -1,13 +1,14 @@
 package com.nazartsyhaniuk.dev.onlinebanking.controller;
 
-import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
+import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerDto;
 import com.nazartsyhaniuk.dev.onlinebanking.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/sign-up")
@@ -21,19 +22,21 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public String showRegistrationTemplate(@ModelAttribute("customer") Customer customer, Model model) {
-        model.addAttribute("customer", customer);
+    public String showRegistrationTemplate(Model model) {
+        CustomerDto customerDto = new CustomerDto();
+        model.addAttribute("customer", customerDto);
         return "registration";
     }
 
     @PostMapping
-    public String registration(@Validated Customer customer, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("customer") @Valid CustomerDto customerDto,
+                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        customerService.create(customer);
+        customerService.create(customerDto);
 
-        return "somt";
+        return "registration";
     }
 }
