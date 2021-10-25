@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and()
                 .authorizeRequests()
                 .antMatchers("/",
@@ -57,19 +58,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/login")
                 .permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/mainMenu")
-                .permitAll()
+
                 .and()
                 .apply(new JwtTokenFilterConfigurer(jwtTokenUtil))
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint);
+                .authenticationEntryPoint(authenticationEntryPoint)
+
+                .and()
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll())
+                .logout(form -> form
+                        .logoutSuccessUrl("/mainMenu")
+                        .permitAll());
     }
 
     @Override
@@ -83,4 +85,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
     }
+
 }
