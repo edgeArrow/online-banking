@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -16,7 +17,9 @@ import javax.validation.constraints.Pattern;
 @ToString
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -59,6 +62,9 @@ public class Customer {
 
     @Column(name = "cis_number")
     private String CISNumber;
+
+    @Column(name = "enabled")
+    private boolean enabled = true;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")

@@ -8,5 +8,7 @@ public interface AccountService {
 
     Account findById(Long id);
 
+    Account findByAccountNumber(String accountNumber);
+
     boolean delete(Customer admin);
 }

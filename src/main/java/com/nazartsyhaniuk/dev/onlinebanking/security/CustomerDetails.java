@@ -16,7 +16,7 @@ public class CustomerDetails implements UserDetails {
 
     private Customer customer;
 
-    //TODO
+    //todo
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

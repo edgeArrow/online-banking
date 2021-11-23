@@ -21,6 +21,9 @@ public class Transaction {
     @Column(name = "name_of_recipient")
     private String nameOfRecipient;
 
+    @Column(name = "recipient_account_number")
+    private String recipientAccountNumber;
+
     @Column(name = "amount")
     private double amount;
 

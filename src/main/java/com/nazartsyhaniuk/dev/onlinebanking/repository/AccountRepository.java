@@ -1,4 +1,4 @@
-package com.nazartsyhaniuk.dev.onlinebanking.dao;
+package com.nazartsyhaniuk.dev.onlinebanking.repository;
 
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;

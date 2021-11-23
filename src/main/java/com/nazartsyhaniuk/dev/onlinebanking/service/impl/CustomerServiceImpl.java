@@ -1,6 +1,6 @@
 package com.nazartsyhaniuk.dev.onlinebanking.service.impl;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dao.CustomerRepository;
+import com.nazartsyhaniuk.dev.onlinebanking.repository.CustomerRepository;
 import com.nazartsyhaniuk.dev.onlinebanking.dto.CustomerDto;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import com.nazartsyhaniuk.dev.onlinebanking.service.AccountService;

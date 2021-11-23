@@ -1,6 +1,6 @@
 package com.nazartsyhaniuk.dev.onlinebanking.service.impl;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dao.AccountRepository;
+import com.nazartsyhaniuk.dev.onlinebanking.repository.AccountRepository;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Account;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import com.nazartsyhaniuk.dev.onlinebanking.service.AccountService;
@@ -36,6 +36,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account findById(Long id) {
         return null;
+    }
+
+    @Override
+    public Account findByAccountNumber(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber);
     }
 
     @Override

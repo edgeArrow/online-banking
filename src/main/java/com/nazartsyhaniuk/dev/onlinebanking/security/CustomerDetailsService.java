@@ -1,6 +1,6 @@
 package com.nazartsyhaniuk.dev.onlinebanking.security;
 
-import com.nazartsyhaniuk.dev.onlinebanking.dao.CustomerRepository;
+import com.nazartsyhaniuk.dev.onlinebanking.repository.CustomerRepository;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
