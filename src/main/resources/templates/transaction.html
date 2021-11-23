@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Start</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<!--    <script src="https://kit.fontawesome.com/3634e6d3a7.js" crossorigin="anonymous"></script>-->
+</head>
+
+<body>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+    <div class="container">
+        <a class="navbar-brand mb-0 h1" href="http://localhost:8080/mainMenu" >OnlineBanking</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar navbar-collapse navbar-fixed-top" id="navbarNav">
+            <div class="navbar-nav nav-tabs">
+                <a class="nav-link" href="http://localhost:8080/mainMenu">Start</a>
+                <a class="nav-link active" aria-current="page" href="transaction.html" data-toggle="tab">Payments</a>
+                <a class="nav-link" href="#">History</a>
+                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="#">Account</a>
+                <a class="nav-link" href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form th:action="@{/transaction}" th:object="${transaction}" method="post" role="form" data-toggle="validator">
+        <div class="container-fluid">
+            <h1>Transaction</h1>
+
+            <div>
+                <label><b>Name of recipient</b>
+                    <input type="text" placeholder="Enter name" th:field="*{nameOfRecipient}" required
+                           th:errorClass="is-invalid">
+                </label>
+                <div th:if="${#fields.hasErrors('nameOfRecipient')}" th:errors="*{nameOfRecipient}"
+                     class="invalid-feedback"></div>
+            </div>
+            <hr>
+
+            <div>
+                <label><b>Recipient account number</b>
+                    <input type="text" placeholder="recipient's account number" th:field="*{recipientAccountNumber}"
+                           required/>
+                </label>
+                <div th:if="${#fields.hasErrors('recipientAccountNumber')}" th:errors="*{recipientAccountNumber}"
+                     class="invalid-feedback"></div>
+            </div>
+            <hr>
+
+            <div>
+                <label><b>Amount</b>
+                    <input type="text" placeholder="amount" th:field="*{amount}"
+                           required/>
+                </label>
+                <div th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"
+                     class="invalid-feedback"></div>
+            </div>
+            <hr>
+
+            <div>
+                <label><b>Title</b>
+                    <input type="text" placeholder="title" th:field="*{title}"
+                           required/>
+                </label>
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+                     class="invalid-feedback"></div>
+            </div>
+            <hr>
+
+            <button type="submit" value="Transaction" class="btn btn-primary">Sent</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
