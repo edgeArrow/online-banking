@@ -32,7 +32,7 @@ public class Account implements Serializable {
     @Column(name = "account_number")
     private String accountNumber;
 
-    @OneToOne(mappedBy = "account", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "account", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
