@@ -3,6 +3,8 @@ package com.nazartsyhaniuk.dev.onlinebanking.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -13,7 +15,9 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class Account implements Serializable {
+    private static final long serialVersionUID = 2L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,5 +36,13 @@ public class Account {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    private List<Transaction> transactions;
+    private List<Transaction> transactionsList;
+
+    public void addTransactionToAccount(Transaction transaction) {
+        if (transactionsList == null) {
+            transactionsList = new ArrayList<>();
+        }
+
+        transactionsList.add(transaction);
+    }
 }

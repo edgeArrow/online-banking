@@ -1,7 +1,5 @@
 package com.nazartsyhaniuk.dev.onlinebanking.config;
 
-import com.nazartsyhaniuk.dev.onlinebanking.security.JwtTokenFilterConfigurer;
-import com.nazartsyhaniuk.dev.onlinebanking.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +10,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,52 +23,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final JwtTokenUtil jwtTokenUtil;
-
-    private final AuthenticationEntryPoint authenticationEntryPoint;
-
     @Autowired
     public SecurityConfig(@Qualifier("customerDetailsService") UserDetailsService userDetailsService,
-                          PasswordEncoder passwordEncoder,
-                          JwtTokenUtil jwtTokenUtil,
-                          AuthenticationEntryPoint authenticationEntryPoint) {
+                          PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().and()
-                .httpBasic().disable()
                 .csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .cors().disable()
 
-                .and()
                 .authorizeRequests()
                 .antMatchers("/",
-                        "/mainMenu",
-                        "/sign-up",
-                        "/login")
+                "/sign-up",
+                "/login")
                 .permitAll()
                 .anyRequest().authenticated()
 
                 .and()
-                .apply(new JwtTokenFilterConfigurer(jwtTokenUtil))
+                .formLogin()
+                .defaultSuccessUrl("/mainMenu")
+                .loginPage("/login")
+                .permitAll()
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index?logout")
                 .and()
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .permitAll())
-                .logout(form -> form
-                        .logoutSuccessUrl("/mainMenu")
-                        .permitAll());
+                .rememberMe();
     }
 
     @Override

@@ -37,6 +37,6 @@ public class RegistrationController {
 
         customerService.create(customerDto);
 
-        return "registration";
+        return "main";
     }
 }
