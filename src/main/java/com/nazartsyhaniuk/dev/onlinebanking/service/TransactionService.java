@@ -1,6 +1,7 @@
 package com.nazartsyhaniuk.dev.onlinebanking.service;
 
 import com.nazartsyhaniuk.dev.onlinebanking.dto.TransactionDto;
+import com.nazartsyhaniuk.dev.onlinebanking.entity.Account;
 import com.nazartsyhaniuk.dev.onlinebanking.entity.Transaction;
 
 import java.security.Principal;
@@ -13,6 +14,8 @@ public interface TransactionService {
     List<Transaction> findAll();
 
     List<Transaction> findByRecipientAccountNumber(String recipientAccountNumber);
+
+    List<Transaction> findAllByAccount(Account account);
 
     List<Transaction> findByDate(String date);
 }

@@ -37,6 +37,6 @@ public class RegistrationController {
 
         customerService.create(customerDto);
 
-        return "main";
+        return "redirect:/mainMenu";
     }
 }

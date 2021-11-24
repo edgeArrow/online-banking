@@ -63,6 +63,11 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<Transaction> findAllByAccount(Account account) {
+        return transactionRepository.findAllByAccount(account);
+    }
+
+    @Override
     public List<Transaction> findByDate(String date) {
         return transactionRepository.findAllByDate(date);
     }
