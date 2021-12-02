@@ -7,6 +7,8 @@ import com.nazartsyhaniuk.dev.onlinebanking.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 @Service
@@ -25,7 +27,8 @@ public class AccountServiceImpl implements AccountService {
     public Account create() {
         Account createdAccount = new Account();
 
-        createdAccount.setBalance(0.0);
+        createdAccount.setBalance(100.0);
+        createdAccount.setDateOfCreation(getCurrentDate());
         createdAccount.setAccountNumber(generateAccountNumber());
 
         accountRepository.save(createdAccount);
@@ -60,5 +63,12 @@ public class AccountServiceImpl implements AccountService {
 
     public boolean checkAccountNumberExist(String accountNumber) {
         return findByAccountNumber(accountNumber) != null;
+    }
+
+    private String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        return dtf.format(now);
     }
 }
