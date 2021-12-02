@@ -57,4 +57,8 @@ public class AccountServiceImpl implements AccountService {
 
         return accountNumber.toString();
     }
+
+    public boolean checkAccountNumberExist(String accountNumber) {
+        return findByAccountNumber(accountNumber) != null;
+    }
 }

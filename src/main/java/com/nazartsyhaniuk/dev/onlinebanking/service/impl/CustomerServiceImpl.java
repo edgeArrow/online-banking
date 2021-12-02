@@ -86,4 +86,8 @@ public class CustomerServiceImpl implements CustomerService {
 
         return CISNumber.toString();
     }
+
+    public boolean checkCISNumber(String CISNumber) {
+        return findByCISNumber(CISNumber) != null;
+    }
 }

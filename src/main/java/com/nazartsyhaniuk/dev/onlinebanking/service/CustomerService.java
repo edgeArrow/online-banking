@@ -18,4 +18,6 @@ public interface CustomerService {
     Customer findByMail(String mail);
 
     Customer findByCISNumber(String CISNumber);
+
+    boolean checkCISNumber(String CISNumber);
 }

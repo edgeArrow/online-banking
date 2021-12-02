@@ -10,5 +10,7 @@ public interface AccountService {
 
     Account findByAccountNumber(String accountNumber);
 
+    boolean checkAccountNumberExist(String accountNumber);
+
     boolean delete(Customer admin);
 }
