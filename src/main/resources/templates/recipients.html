@@ -72,7 +72,7 @@
                         </tr>
 
                         <tr th:each="recipient: ${allRecipients}">
-                            <td th:text="${recipient.name0fRecipient}"> </td>
+                            <td th:text="${recipient.nameOfRecipient}"> </td>
                             <td th:text="${recipient.recipientAccountNumber}"> </td>
                             <td>
                                 <a class="btn btn-danger" th:href="@{/deleteRecipient/{id}(id=${recipient.id})}">Delete</a>

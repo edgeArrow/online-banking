@@ -43,16 +43,17 @@ public class RecipientController {
 
     @GetMapping("/add-recipient")
     public String showAddRecipientTemplate(Model model) {
+
         model.addAttribute("recipient", new Recipient());
 
         return "add-recipient";
     }
 
     @PostMapping("/add-recipient")
-    public String addRecipient(@ModelAttribute("recipient") @Valid Recipient recipient, Principal principal,
-                               BindingResult result) {
-        if (result.hasErrors()) {
-            return "recipients";
+    public String addRecipient(@ModelAttribute("recipient") @Valid Recipient recipient, BindingResult bindingResult,
+                               Principal principal) {
+        if (bindingResult.hasErrors()) {
+            return "add-recipient";
         }
 
         if (accountService.checkAccountNumberExist(recipient.getRecipientAccountNumber())) {

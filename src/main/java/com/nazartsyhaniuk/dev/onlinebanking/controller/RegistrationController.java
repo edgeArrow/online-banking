@@ -24,7 +24,9 @@ public class RegistrationController {
     @GetMapping
     public String showRegistrationTemplate(Model model) {
         CustomerDto customerDto = new CustomerDto();
+
         model.addAttribute("customer", customerDto);
+
         return "registration";
     }
 

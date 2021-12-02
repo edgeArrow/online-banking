@@ -33,7 +33,7 @@
                 <label><b>Name</b>
                     <input type="text" placeholder="Enter name" th:field="*{name}" required th:errorClass="is-invalid">
                 </label>
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
             </div>
             <hr>
 
@@ -41,7 +41,7 @@
                 <label><b>Surname</b>
                     <input type="text" placeholder="Enter surname" th:field="*{surname}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('surname')}" th:errorclass="error" th:errors="*{surname}"></p>
             </div>
             <hr>
 
@@ -49,7 +49,7 @@
                 <label><b>Mail</b>
                     <input type="email" placeholder="Enter mail" th:field="*{mail}"/>
                 </label>
-                <div th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('mail')}" th:errorclass="error" th:errors="*{mail}"></p>
             </div>
             <hr>
 
@@ -57,8 +57,7 @@
                 <label><b>Date of birth</b>
                     <input type="date" placeholder="Enter Date of birth" th:field="*{dateOfBirth}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('dateOfBirth')}" th:errorclass="error" th:errors="*{dateOfBirth}"></p>
             </div>
             <hr>
 
@@ -66,7 +65,7 @@
                 <label><b>Address</b>
                     <input type="text" placeholder="Enter address" th:field="*{address}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('address')}" th:errorclass="error" th:errors="*{address}"></p>
             </div>
             <hr>
 
@@ -74,7 +73,7 @@
                 <label><b>City</b>
                     <input type="text" placeholder="Enter city" th:field="*{city}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{city}"></p>
             </div>
             <hr>
 
@@ -82,7 +81,7 @@
                 <label><b>Country</b>
                     <input type="text" placeholder="Enter country" th:field="*{country}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('country')}" th:errorclass="error" th:errors="*{country}"></p>
             </div>
             <hr>
 
@@ -91,8 +90,7 @@
                     <input type="text" placeholder="Enter phone number" th:field="*{phoneNumber}"
                            th:errorClass="is-invalid" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}"></p>
             </div>
             <hr>
 
@@ -100,7 +98,7 @@
                 <label><b>Password</b>
                     <input type="password" placeholder="Enter password" th:field="*{password}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"></p>
             </div>
             <hr>
 

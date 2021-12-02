@@ -59,20 +59,11 @@
             <br>
             <br>
 
-            <div th:if="${#fields.hasAnyErrors()}">
-                <ul>
-                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
-                </ul>
-            </div>
-
             <div>
                 <label><b>Name of recipient</b>
-                    <input type="text" placeholder="Enter name" th:field="*{name0fRecipient}" required
-                           th:errorClass="is-invalid">
+                    <input type="text" placeholder="Enter recipient's name" th:field="*{nameOfRecipient}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('name0fRecipient')}" th:class="${#fields.hasErrors('nameOfRecipient')}? error"
-                     th:errors="*{name0fRecipient}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('nameOfRecipient')}" th:errorclass="error" th:errors="*{nameOfRecipient}"></p>
             </div>
             <hr>
 
@@ -81,10 +72,8 @@
                     <input type="text" placeholder="recipient's account number" th:field="*{recipientAccountNumber}"
                            required/>
                 </label>
-                <div th:if="${#fields.hasErrors('recipientAccountNumber')}"
-                     th:class="${#fields.hasErrors('nameOfRecipient')}? error"
-                     th:errors="*{recipientAccountNumber}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('recipientAccountNumber')}" th:errorclass="error"
+                   th:errors="*{recipientAccountNumber}"></p>
             </div>
             <hr>
 

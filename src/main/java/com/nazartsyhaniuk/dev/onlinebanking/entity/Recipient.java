@@ -25,7 +25,7 @@ public class Recipient implements Serializable {
 
     @Column(name = "name_of_recipient")
     @NotBlank(message = "This field must be filled")
-    private String name0fRecipient;
+    private String nameOfRecipient;
 
     @Column(name = "recipient_account_number")
     @NotBlank(message = "This field must be filled")

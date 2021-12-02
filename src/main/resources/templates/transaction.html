@@ -53,7 +53,7 @@
 </nav>
 
 <div class="container">
-    <form th:action="@{/transaction}" th:object="${transaction}" method="post" role="form" data-toggle="validator">
+    <form th:action="@{/transaction}" th:object="${transactionDto   }" method="post" role="form" data-toggle="validator">
         <div class="container-fluid">
             <h1>Transaction</h1>
 
@@ -63,11 +63,9 @@
 
             <div>
                 <label><b>Name of recipient</b>
-                    <input type="text" placeholder="Enter name" th:field="*{nameOfRecipient}" required
-                           th:errorClass="is-invalid">
+                    <input type="text" placeholder="Enter recipient's name" th:field="*{nameOfRecipient}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('nameOfRecipient')}" th:errors="*{nameOfRecipient}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('nameOfRecipient')}" th:errorclass="error" th:errors="*{nameOfRecipient}"></p>
             </div>
             <hr>
 
@@ -76,28 +74,24 @@
                     <input type="text" placeholder="recipient's account number" th:field="*{recipientAccountNumber}"
                            required/>
                 </label>
-                <div th:if="${#fields.hasErrors('recipientAccountNumber')}" th:errors="*{recipientAccountNumber}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('recipientAccountNumber')}" th:errorclass="error"
+                   th:errors="*{recipientAccountNumber}"></p>
             </div>
             <hr>
 
             <div>
                 <label><b>Amount</b>
-                    <input type="text" placeholder="amount" th:field="*{amount}"
-                           required/>
+                    <input type="text" placeholder="Enter amount" th:field="*{amount}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('amount')}" th:errorclass="error" th:errors="*{amount}"></p>
             </div>
             <hr>
 
             <div>
                 <label><b>Title</b>
-                    <input type="text" placeholder="title" th:field="*{title}"
-                           required/>
+                    <input type="text" placeholder="title" th:field="*{title}" required/>
                 </label>
-                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
-                     class="invalid-feedback"></div>
+                <p th:if="${#fields.hasErrors('title')}" th:errorclass="error" th:errors="*{title}"></p>
             </div>
             <hr>
 
